@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
 RUN echo "syntax on\nset number\nset tabstop=4\nset shiftwidth=4\nset expandtab" > ~/.vimrc
 
 # Set working directory
-WORKDIR /kactl
+WORKDIR /notebook
 
 # Add build aliases
 RUN echo 'alias build="make kactl"' >> ~/.bashrc && \

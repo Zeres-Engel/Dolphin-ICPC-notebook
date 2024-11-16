@@ -13,10 +13,20 @@
 struct Tree {
 	typedef int T;
 	static constexpr T unit = INT_MIN;
-	T f(T a, T b) { return max(a, b); } // (any associative fn)
+	T f(T a, T b) { return max(a, b); } // max
+	// static constexpr T unit = INT_MAX;
+	// T f(T a, T b) { return min(a, b); } // min
+	// static constexpr T unit = 0;
+	// T f(T a, T b) { return a + b; } // sum
+	// static constexpr T unit = 0;
+	// T f(T a, T b) { return __gcd(a, b); } // GCD
+	// static constexpr T unit = 1;
+	// T f(T a, T b) { return (a*b)/__gcd(a, b); } // GCD
 	vector<T> s; int n;
 	Tree(int n = 0, T def = unit) : s(2*n, def), n(n) {}
 	void update(int pos, T val) {
+		// condition 
+		// for (s[pos += n] = (val > 0 ? 1 : 0); pos /= 2;)
 		for (s[pos += n] = val; pos /= 2;)
 			s[pos] = f(s[pos * 2], s[pos * 2 + 1]);
 	}

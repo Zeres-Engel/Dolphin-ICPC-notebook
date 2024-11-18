@@ -1,31 +1,36 @@
 /**
  * Author: Nguyen Phuoc Thanh
  * License: CC0
- * Description: Computes Grundy numbers for game positions.
- * Time Complexity: O(N + M), where N is the number of positions and M is the number of moves.
+ * Description: Calculates Grundy numbers for impartial games.
+ * Usage: GrundyCalculator gc(n, m);
+ *        gc.add_move(a, b); // Add move from position a to b
+ *        gc.compute_grundy(); // Calculate all Grundy numbers
+ * Time: O(N + M)
+ * Status: Tested
  */
-
 #pragma once
-typedef pair<int, int> pii;
 
 struct GrundyCalculator {
     int N, M;
     vector<vector<int>> moves;
     vector<int> grundy;
-    GrundyCalculator(int n, int m) : N(n), M(m), moves(n+1, vector<int>()), grundy(n+1, 0) {}
-    void add_move(int a, int b) {
-        moves[a].push_back(b);
+    
+    GrundyCalculator(int n, int m) : N(n), M(m), 
+        moves(n+1), grundy(n+1) {}
+    
+    void add_move(int a, int b) { moves[a].push_back(b); }
+    
+    int mex(const vector<int> &s) {
+        vector<bool> present(s.size() + 1);
+        for(int x : s) if(x < sz(present)) present[x] = true;
+        rep(i,0,sz(present)) if(!present[i]) return i;
+        return sz(present);
     }
-    int mex(const vector<int> &s){
-        vector<bool> present(s.size()+1, false);
-        for(auto x : s) if(x < present.size()) present[x] = true;
-        for(int i = 0; i < present.size(); i++) if(!present[i]) return i;
-        return present.size();
-    }
+    
     void compute_grundy() {
-        for(int i = 0; i <= N; i++){
+        rep(i,0,N+1) {
             vector<int> next;
-            for(auto &b : moves[i]) next.push_back(grundy[b]);
+            for(int b : moves[i]) next.push_back(grundy[b]);
             grundy[i] = mex(next);
         }
     }

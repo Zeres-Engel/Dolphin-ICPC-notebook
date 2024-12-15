@@ -21,22 +21,25 @@ const int INF = 1e9;
 const int NBIT = 18;
 const int N = 1<<18;
 const int MOD = (int)1e9+7;
-    
-    void solve() {
-        
-        
-    }
 
-    int main() {
-        #ifndef ONLINE_JUDGE
-        freopen("INPUT.INP","r",stdin);
-        freopen("OUTPUT.OUT","w",stdout);
-        #endif
-        ios_base::sync_with_stdio(false);
-        cin.tie(0); cout.tie(0);
-        int test = 1;
-        cin >> test;
-        while (test--) {
-            solve();
-        }
+int di[4] = {-1, 0, 0, 1};
+int dj[4] = {0, -1, 1, 0};
+
+void solve() {
+    
+    
+}
+
+int main() {
+    #ifndef ONLINE_JUDGE
+    freopen("input.inp","r",stdin);
+    freopen("input.out","w",stdout);
+    #endif
+    ios_base::sync_with_stdio(false);
+    cin.tie(0); cout.tie(0);
+    int test = 1;
+    cin >> test;
+    while (test--) {
+        solve();
     }
+}
